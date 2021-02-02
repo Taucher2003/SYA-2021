@@ -1,60 +1,56 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 
-namespace _2021_02_02_Timer {
-    public partial class Timer : Form {
-        private System.Timers.Timer timer = new System.Timers.Timer();
-        private double start;
+namespace _2021_02_02_Timer
+{
+    public partial class Timer : Form
+    {
+        private readonly System.Timers.Timer _timer = new System.Timers.Timer();
+        private double _start;
 
-        public Timer() {
+        public Timer()
+        {
             InitializeComponent();
-            timer.AutoReset = true;
-            timer.Interval = 1;
-            timer.Elapsed += timerElapsed;
+            _timer.AutoReset = true;
+            _timer.Interval = 1;
+            _timer.Elapsed += TimerElapsed;
         }
 
-        private void buttonStart_Click(object sender, EventArgs e) {
-            start = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds;
-            timer.Start();
+        private void buttonStart_Click(object sender, EventArgs e)
+        {
+            _start = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds;
+            _timer.Start();
             buttonStart.Text = "Reset";
         }
 
-        private void buttonStop_Click(object sender, EventArgs e) {
-            if(timer.Enabled) {
-                timer.Stop();
-                buttonStart.Text = "Reset + Start";
-            }
+        private void buttonStop_Click(object sender, EventArgs e)
+        {
+            if (!_timer.Enabled) return;
+            _timer.Stop();
+            buttonStart.Text = "Reset + Start";
         }
 
-        private void timerElapsed(object sender, ElapsedEventArgs e) {
-            double millisDifference = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds - start;
+        private void TimerElapsed(object sender, ElapsedEventArgs e)
+        {
+            double millisDifference = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds - _start;
             String format = formatMillis(millisDifference);
-            labelOutput.Invoke(new Action(delegate () {
-                labelOutput.Text = format;
-            }));
+            labelOutput.Invoke(new Action(delegate() { labelOutput.Text = format; }));
         }
 
-        private String formatMillis(double millisDifference) {
-
-            long millis = (long) millisDifference;
-            long seconds = millis / 1000;
-            long minutes = seconds / 60;
+        private String formatMillis(double millisDifference)
+        {
+            var millis = (long) millisDifference;
+            var seconds = millis / 1000;
+            var minutes = seconds / 60;
 
             millis %= 1000;
             seconds %= 60;
 
-            String displaySeconds = (seconds < 10 ? "0" : "") + seconds;
-            String displayMilliseconds = (millis < 10 ? "0" : "") + (millis < 100 ? "0" : "") + millis;
+            var displaySeconds = (seconds < 10 ? "0" : "") + seconds;
+            var displayMilliseconds = (millis < 10 ? "0" : "") + (millis < 100 ? "0" : "") + millis;
 
-            String format = "";
+            var format = "";
             format += minutes + " Minute" + (minutes != 1 ? "n" : "") + ", ";
             format += displaySeconds + " Sekunde" + (seconds != 1 ? "n" : "") + ", ";
             format += displayMilliseconds + " Millisekunden";
