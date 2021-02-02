@@ -28,11 +28,11 @@ namespace _2021_02_02_Timer {
 
         private void TimerElapsed(object sender, ElapsedEventArgs e) {
             double millisDifference = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds - _start;
-            String format = formatMillis(millisDifference);
-            labelOutput.Invoke(new Action(delegate() { labelOutput.Text = format; }));
+            String format = FormatMillis(millisDifference);
+            labelOutput.Invoke(new Action(() => labelOutput.Text = format));
         }
 
-        private String formatMillis(double millisDifference) {
+        private static string FormatMillis(double millisDifference) {
             var millis = (long) millisDifference;
             var seconds = millis / 1000;
             var minutes = seconds / 60;
