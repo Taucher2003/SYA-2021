@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2020-09-10_Schleifen", "2020-09-10_Schleifen.csproj", "{51D22D31-8191-49CA-9DDC-54309A44AC2F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51D22D31-8191-49CA-9DDC-54309A44AC2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51D22D31-8191-49CA-9DDC-54309A44AC2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51D22D31-8191-49CA-9DDC-54309A44AC2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51D22D31-8191-49CA-9DDC-54309A44AC2F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {11755B36-C493-406E-9DF4-FD5104C099AC}
+	EndGlobalSection
+EndGlobal
