@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace _2020_01_17_TimeDifference {
+namespace _2021_01_17_TimeDifference {
     static class Program {
         /// <summary>
         /// Der Haupteinstiegspunkt für die Anwendung.
