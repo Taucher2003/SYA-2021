@@ -69,7 +69,7 @@
             this.Controls.Add(this.labelOutput);
             this.Controls.Add(this.buttonStart);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Stoppuhr";
             this.ResumeLayout(false);
             this.PerformLayout();
 

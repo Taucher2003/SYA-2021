@@ -24,10 +24,14 @@ namespace _2021_02_02_Timer {
         private void buttonStart_Click(object sender, EventArgs e) {
             start = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds;
             timer.Start();
+            buttonStart.Text = "Reset";
         }
 
         private void buttonStop_Click(object sender, EventArgs e) {
-            timer.Stop();
+            if(timer.Enabled) {
+                timer.Stop();
+                buttonStart.Text = "Reset + Start";
+            }
         }
 
         private void timerElapsed(object sender, ElapsedEventArgs e) {
@@ -47,10 +51,13 @@ namespace _2021_02_02_Timer {
             millis %= 1000;
             seconds %= 60;
 
+            String displaySeconds = (seconds < 10 ? "0" : "") + seconds;
+            String displayMilliseconds = (millis < 10 ? "0" : "") + (millis < 100 ? "0" : "") + millis;
+
             String format = "";
             format += minutes + " Minute" + (minutes != 1 ? "n" : "") + ", ";
-            format += seconds + " Sekunde" + (seconds != 1 ? "n" : "") + ", ";
-            format += millis + " Millisekunden";
+            format += displaySeconds + " Sekunde" + (seconds != 1 ? "n" : "") + ", ";
+            format += displayMilliseconds + " Millisekunden";
 
             return format;
         }
