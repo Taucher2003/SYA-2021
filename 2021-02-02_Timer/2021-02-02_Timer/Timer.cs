@@ -10,11 +10,11 @@ using System.Timers;
 using System.Windows.Forms;
 
 namespace _2021_02_02_Timer {
-    public partial class Form1 : Form {
+    public partial class Timer : Form {
         private System.Timers.Timer timer = new System.Timers.Timer();
         private double start;
 
-        public Form1() {
+        public Timer() {
             InitializeComponent();
             timer.AutoReset = true;
             timer.Interval = 1;

@@ -1,5 +1,5 @@
 ﻿namespace _2021_02_02_Timer {
-    partial class Form1 {
+    partial class Timer {
         /// <summary>
         /// Erforderliche Designervariable.
         /// </summary>
