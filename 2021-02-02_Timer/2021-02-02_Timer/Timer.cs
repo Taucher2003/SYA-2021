@@ -27,8 +27,8 @@ namespace _2021_02_02_Timer {
         }
 
         private void TimerElapsed(object sender, ElapsedEventArgs e) {
-            double millisDifference = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds - _start;
-            String format = FormatMillis(millisDifference);
+            var millisDifference = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds - _start;
+            var format = FormatMillis(millisDifference);
             labelOutput.Invoke(new Action(() => labelOutput.Text = format));
         }
 
