@@ -12,6 +12,7 @@ namespace _2021_02_02_Timer {
             _timer.AutoReset = true;
             _timer.Interval = 1;
             _timer.Elapsed += TimerElapsed;
+            this.FormClosed += form_Closed;
         }
 
         private void buttonStart_Click(object sender, EventArgs e) {
@@ -24,6 +25,10 @@ namespace _2021_02_02_Timer {
             if (!_timer.Enabled) return;
             _timer.Stop();
             buttonStart.Text = "Reset + Start";
+        }
+
+        private void form_Closed(object sender, FormClosedEventArgs e) {
+            _timer.Stop();
         }
 
         private void TimerElapsed(object sender, ElapsedEventArgs e) {
