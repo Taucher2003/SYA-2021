@@ -37,7 +37,7 @@ namespace _2021_02_02_Timer {
             labelOutput.Invoke(new Action(() => labelOutput.Text = format));
         }
 
-        private static string FormatMillis(double millisDifference) {
+        private string FormatMillis(double millisDifference) {
             var millis = (long) millisDifference;
             var seconds = millis / 1000;
             var minutes = seconds / 60;
