@@ -782,4 +782,7 @@ modules.xml
 
 # Ionide (cross platform F# VS Code tools) working folder
 
+# PDF files
+*.pdf
+
 # End of https://www.toptal.com/developers/gitignore/api/csharp,visualstudio,dotnetcore,rider,jetbrains,jetbrains+all,jetbrains+iml
