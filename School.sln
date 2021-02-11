@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2021-01-17_TimeDifference",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2021-02-02_Timer", "2021-02-02_Timer\2021-02-02_Timer\2021-02-02_Timer.csproj", "{31D74FA6-9D08-4FE5-A0AD-76270558BABB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2021-02-08_IOW-Input", "2021-02-08_IOW-Input\2021-02-08_IOW-Input\2021-02-08_IOW-Input.csproj", "{138938E5-8810-412A-8FC8-60C348FC7F40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +76,10 @@ Global
 		{31D74FA6-9D08-4FE5-A0AD-76270558BABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31D74FA6-9D08-4FE5-A0AD-76270558BABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31D74FA6-9D08-4FE5-A0AD-76270558BABB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{138938E5-8810-412A-8FC8-60C348FC7F40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{138938E5-8810-412A-8FC8-60C348FC7F40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{138938E5-8810-412A-8FC8-60C348FC7F40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{138938E5-8810-412A-8FC8-60C348FC7F40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
