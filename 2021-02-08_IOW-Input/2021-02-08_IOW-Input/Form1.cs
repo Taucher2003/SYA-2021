@@ -8,20 +8,6 @@ using Timer = System.Timers.Timer;
 
 namespace _2021_02_08_IOW_Input {
     public partial class Form1 : Form {
-        private new int Handle {
-            get => _handle;
-            set {
-                _handle = value;
-                if (!_handles.Contains(value))
-                    _handles.Add(value);
-            }
-        }
-
-        private int _handle;
-        private readonly List<int> _handles = new List<int>();
-
-        private readonly Timer _timer = new Timer();
-
         public Form1() {
             InitializeComponent();
             FormClosed += OnClose;
@@ -33,10 +19,10 @@ namespace _2021_02_08_IOW_Input {
         }
 
         [DllImport("iowkit", SetLastError = true)]
-        public static extern int IowKitOpenDevice();
+        private static extern int IowKitOpenDevice();
 
         [DllImport("iowkit", SetLastError = true)]
-        public static extern void IowKitCloseDevice(int iowHandle);
+        private static extern void IowKitCloseDevice(int iowHandle);
 
         [DllImport("iowkit", SetLastError = true)]
         private static extern int IowKitGetNumDevs();
@@ -48,12 +34,25 @@ namespace _2021_02_08_IOW_Input {
         private static extern int IowKitWrite(int iowHandle, int numPipe, ref byte buffer, int length);
 
         [DllImport("iowkit", SetLastError = true)]
-        public static extern int IowKitReadNonBlocking(int iowHandle, int numPipe, ref byte buffer, int length);
+        private static extern int IowKitReadNonBlocking(int iowHandle, int numPipe, ref byte buffer, int length);
 
         private const byte Pin15 = 1 << 5;
         private const byte Pin16 = 1 << 6;
         private const byte Pin17 = 1 << 7;
         private const byte PinAllInput = Pin15 | Pin16 | Pin17;
+
+        private new int Handle {
+            get => _handle;
+            set {
+                _handle = value;
+                if (!_handles.Contains(value))
+                    _handles.Add(value);
+            }
+        }
+
+        private int _handle;
+        private readonly List<int> _handles = new List<int>();
+        private readonly Timer _timer = new Timer();
 
         private void OpenWarrior() {
             IowKitOpenDevice();
@@ -73,10 +72,10 @@ namespace _2021_02_08_IOW_Input {
         }
 
 
-        private void OnClick(int button, bool active) {
-            var panel = button == 5
+        private void OnClick(byte pinId, bool active) {
+            var panel = pinId == Pin15
                 ? panelPin15
-                : button == 6
+                : pinId == Pin16
                     ? panelPin16
                     : panelPin17;
             panel.BackColor = active ? Color.DarkGreen : Color.DarkRed;
@@ -108,16 +107,16 @@ namespace _2021_02_08_IOW_Input {
 
             IowKitReadNonBlocking(Handle, 0, ref _buffer[0], 5);
 
-            CheckEventCall(5, Pin15);
-            CheckEventCall(6, Pin16);
-            CheckEventCall(7, Pin17);
+            CheckEventCall(Pin15);
+            CheckEventCall(Pin16);
+            CheckEventCall(Pin17);
 
             _currentPressed = _buffer[1];
         }
 
-        private void CheckEventCall(int button, byte pin) {
+        private void CheckEventCall(byte pin) {
             if (((_currentPressed & pin) == 0) ^ ((_buffer[1] & pin) == 0)) {
-                OnClick(button, (_buffer[1] & pin) == 0);
+                OnClick(pin, (_buffer[1] & pin) == 0);
             }
         }
     }
