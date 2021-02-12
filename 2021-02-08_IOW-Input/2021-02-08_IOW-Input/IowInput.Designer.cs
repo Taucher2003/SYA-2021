@@ -1,5 +1,5 @@
 ﻿namespace _2021_02_08_IOW_Input {
-    partial class Form1 {
+    partial class IowInput {
         /// <summary>
         /// Erforderliche Designervariable.
         /// </summary>
@@ -70,7 +70,7 @@
             this.Controls.Add(this.panelPin16);
             this.Controls.Add(this.panelPin15);
             this.Controls.Add(this.labelCurrentInput);
-            this.Name = "Form1";
+            this.Name = "IowInput";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.InitializeWarriorStates);
             this.ResumeLayout(false);

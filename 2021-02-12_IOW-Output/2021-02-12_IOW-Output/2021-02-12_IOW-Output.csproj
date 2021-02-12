@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{138938E5-8810-412A-8FC8-60C348FC7F40}</ProjectGuid>
+    <ProjectGuid>{13001591-3FB3-4798-B1DA-664DA4BC21B1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>_2021_02_08_IOW_Input</RootNamespace>
-    <AssemblyName>2021-02-08_IOW-Input</AssemblyName>
+    <RootNamespace>_2021_02_12_IOW_Output</RootNamespace>
+    <AssemblyName>2021-02-12_IOW-Output</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,15 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IowInput.cs" />
-    <Compile Include="IowInput.Designer.cs">
-      <DependentUpon>IowInput.cs</DependentUpon>
-    </Compile>
+    <Compile Include="IowOutput.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="IowInput.resx">
-      <DependentUpon>IowInput.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -76,6 +70,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\2021-02-08_IOW-Input\2021-02-08_IOW-Input\2021-02-08_IOW-Input.csproj">
+      <Project>{138938e5-8810-412a-8fc8-60c348fc7f40}</Project>
+      <Name>2021-02-08_IOW-Input</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

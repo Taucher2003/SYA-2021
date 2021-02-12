@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace _2021_01_17_TimeDifference {
+namespace _2020_01_17_TimeDifference {
     public partial class Form1 : Form {
         public Form1() {
             InitializeComponent();

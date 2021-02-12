@@ -1,4 +1,4 @@
-﻿namespace _2021_01_17_TimeDifference {
+﻿namespace _2020_01_17_TimeDifference {
     partial class Form1 {
         /// <summary>
         /// Erforderliche Designervariable.

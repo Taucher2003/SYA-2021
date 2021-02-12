@@ -71,7 +71,6 @@ namespace _2021_02_08_IOW_Input {
             IowKitWrite(Handle, 0, ref _data[0], 5);
         }
 
-
         private void OnClick(byte pin, bool active) {
             var panel = GetPanelByPin(pin);
             panel.BackColor = active ? Color.DarkGreen : Color.DarkRed;
