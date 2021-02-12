@@ -4,18 +4,24 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Timers;
 using System.Windows.Forms;
+using _2021_02_12_IOW_Output;
 using Timer = System.Timers.Timer;
 
 namespace _2021_02_08_IOW_Input {
-    public partial class Form1 : Form {
-        public Form1() {
+    public partial class IowInput : Form {
+        public IowInput() {
             InitializeComponent();
+            Init();
+        }
+
+        private void Init() {
             FormClosed += OnClose;
             OpenWarrior();
             _timer.Interval = 50;
             _timer.AutoReset = true;
             _timer.Elapsed += OnTimerElapsed;
             _timer.Start();
+            ClickActions += OnClick;
         }
 
         [DllImport("iowkit", SetLastError = true)]
@@ -31,24 +37,35 @@ namespace _2021_02_08_IOW_Input {
         private static extern int IowKitGetDeviceHandle(int numDevice);
 
         [DllImport("iowkit", SetLastError = true)]
-        private static extern int IowKitWrite(int iowHandle, int numPipe, ref byte buffer, int length);
+        public static extern int IowKitWrite(int iowHandle, int numPipe, ref byte buffer, int length);
 
         [DllImport("iowkit", SetLastError = true)]
         private static extern int IowKitReadNonBlocking(int iowHandle, int numPipe, ref byte buffer, int length);
 
-        private const byte Pin15 = 1 << 5;
-        private const byte Pin16 = 1 << 6;
-        private const byte Pin17 = 1 << 7;
-        private const byte PinAllInput = Pin15 | Pin16 | Pin17;
+        public const byte Pin15 = 1 << 5;
+        public const byte Pin16 = 1 << 6;
+        public const byte Pin17 = 1 << 7;
+        public const byte PinAllInput = Pin15 | Pin16 | Pin17;
 
-        private new int Handle {
+        private const byte PinAllOutput = 1 << 0 | 1 << 1 | 1 << 2;
+
+        public new int Handle {
             get => _handle;
-            set {
+            private set {
                 _handle = value;
                 if (!_handles.Contains(value))
                     _handles.Add(value);
             }
         }
+
+        public event ClickHandler ClickActions {
+            add => _clickHandler += value;
+            remove => _clickHandler -= value;
+        }
+        
+        public delegate void ClickHandler(byte pin, bool active);
+
+        private ClickHandler _clickHandler;
 
         private int _handle;
         private readonly List<int> _handles = new List<int>();
@@ -61,14 +78,14 @@ namespace _2021_02_08_IOW_Input {
             }
         }
 
-        private readonly byte[] _data = new byte[5];
+        private readonly byte[] _buffer = new byte[5];
 
         private void InitializeWarriorStates(object sender, EventArgs e) {
-            _data[0] = 0;
-            _data[1] = PinAllInput;
-            _data[2] = 0;
-            _data[3] = 0;
-            IowKitWrite(Handle, 0, ref _data[0], 5);
+            _buffer[0] = 0;
+            _buffer[1] = PinAllInput;
+            _buffer[2] = PinAllOutput;
+            _buffer[3] = 0;
+            IowKitWrite(Handle, 0, ref _buffer[0], 5);
         }
 
         private void OnClick(byte pin, bool active) {
@@ -104,16 +121,11 @@ namespace _2021_02_08_IOW_Input {
             }
         }
 
-        private byte[] _buffer;
         private byte _currentPressed = PinAllInput;
 
         private void OnTimerElapsed(object sender, ElapsedEventArgs e) {
-            if (_buffer is null) {
-                _buffer = _data;
-                UpdateLabel();
-            }
-
             IowKitReadNonBlocking(Handle, 0, ref _buffer[0], 5);
+            Console.WriteLine(string.Join(" ", _buffer));
 
             CheckEventCall(Pin15);
             CheckEventCall(Pin16);
@@ -124,8 +136,12 @@ namespace _2021_02_08_IOW_Input {
 
         private void CheckEventCall(byte pin) {
             if (((_currentPressed & pin) == 0) ^ ((_buffer[1] & pin) == 0)) {
-                OnClick(pin, (_buffer[1] & pin) == 0);
+                _clickHandler(pin, (_buffer[1] & pin) == 0);
             }
+        }
+
+        public byte[] GetBuffer() {
+            return _buffer;
         }
     }
 }
