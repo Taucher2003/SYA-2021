@@ -39,6 +39,7 @@
             // 
             // panelPin15
             // 
+            this.panelPin15.BackColor = System.Drawing.Color.DarkRed;
             this.panelPin15.Location = new System.Drawing.Point(128, 210);
             this.panelPin15.Name = "panelPin15";
             this.panelPin15.Size = new System.Drawing.Size(128, 124);
@@ -46,6 +47,7 @@
             // 
             // panelPin16
             // 
+            this.panelPin16.BackColor = System.Drawing.Color.DarkRed;
             this.panelPin16.Location = new System.Drawing.Point(292, 210);
             this.panelPin16.Name = "panelPin16";
             this.panelPin16.Size = new System.Drawing.Size(128, 124);
@@ -53,6 +55,7 @@
             // 
             // panelPin17
             // 
+            this.panelPin17.BackColor = System.Drawing.Color.DarkRed;
             this.panelPin17.Location = new System.Drawing.Point(449, 210);
             this.panelPin17.Name = "panelPin17";
             this.panelPin17.Size = new System.Drawing.Size(128, 124);

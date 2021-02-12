@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Timers;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Timers;
 using System.Windows.Forms;
 using Timer = System.Timers.Timer;
 
@@ -85,7 +85,7 @@ namespace _2021_02_08_IOW_Input {
 
         private void UpdateLabel() {
             labelCurrentInput.Invoke(new Action(() => {
-                labelCurrentInput.Text =$@"_buffer[1] =  {_data[1]:X2}  ( " + _data[1] + @" ) ";
+                labelCurrentInput.Text = $@"_buffer[1] =  {_buffer[1]:X2}  ( " + _buffer[1] + @" ) ";
             }));
         }
 
@@ -102,8 +102,8 @@ namespace _2021_02_08_IOW_Input {
 
         private void OnTimerElapsed(object sender, ElapsedEventArgs e) {
             if (_buffer is null) {
-                UpdateLabel();
                 _buffer = _data;
+                UpdateLabel();
             }
 
             IowKitReadNonBlocking(Handle, 0, ref _buffer[0], 5);
