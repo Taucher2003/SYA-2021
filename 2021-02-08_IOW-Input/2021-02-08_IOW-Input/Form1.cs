@@ -72,14 +72,23 @@ namespace _2021_02_08_IOW_Input {
         }
 
 
-        private void OnClick(byte pinId, bool active) {
-            var panel = pinId == Pin15
-                ? panelPin15
-                : pinId == Pin16
-                    ? panelPin16
-                    : panelPin17;
+        private void OnClick(byte pin, bool active) {
+            var panel = GetPanelByPin(pin);
             panel.BackColor = active ? Color.DarkGreen : Color.DarkRed;
             UpdateLabel();
+        }
+
+        private Panel GetPanelByPin(byte pin) {
+            switch (pin) {
+                case Pin15:
+                    return panelPin15;
+                case Pin16:
+                    return panelPin16;
+                case Pin17:
+                    return panelPin17;
+                default:
+                    return null;
+            }
         }
 
         private void UpdateLabel() {
