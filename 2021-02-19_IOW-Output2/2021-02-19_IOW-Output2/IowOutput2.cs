@@ -89,8 +89,9 @@ namespace _2021_02_19_IOW_Output2 {
         private const byte LedYellow = 1 << 1;
         private const byte LedGreen = 1 << 0;
 
-        private byte CalculateBitPattern() =>
-            checkBoxContinues.Checked ? CalculateContinuesPattern() : CalculateDefaultPattern();
+        private byte CalculateBitPattern() => checkBoxContinues.Checked
+            ? CalculateContinuesPattern()
+            : CalculateDefaultPattern();
 
         private int _continuesState = 0;
 
