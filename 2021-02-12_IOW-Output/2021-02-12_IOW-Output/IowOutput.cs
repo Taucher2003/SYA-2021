@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using _2021_02_08_IOW_Input;
 
 // ReSharper disable LocalizableElement
@@ -16,9 +15,6 @@ namespace _2021_02_12_IOW_Output {
 
         public const byte PinAllOutput = Pin17 | Pin18 | Pin19;
 
-        [DllImport("iowkit", SetLastError = true)]
-        private static extern int IowKitWrite(int iowHandle, int numPipe, ref byte buffer, int length);
-
         private readonly Dictionary<byte, byte> _inputPinToOutputPinShift = new Dictionary<byte, byte> {
             {IowInput.Pin15, Pin17Shift},
             {IowInput.Pin16, Pin18Shift},
@@ -31,24 +27,24 @@ namespace _2021_02_12_IOW_Output {
             var change = _inputPinToOutputPinShift[pin];
             SetBufferByte(2, change, active);
             var buffer = Program.Input.GetBuffer();
-            WriteToIow(new []{ buffer[0], IowInput.PinAllInput, buffer[2], buffer[3], buffer[4] });
+            WriteToIow(new[] {buffer[0], IowInput.PinAllInput, buffer[2], buffer[3], buffer[4]});
         }
 
         private static void WriteToIow(byte[] data) {
-            IowKitWrite(Program.Input.Handle, 0, ref data[0], 5);
+            IowInput.IowKitWrite(Program.Input.Handle, 0, ref data[0], 5);
         }
 
         private static void SetBufferByte(int bufferIndex, int bitPosition, bool active) {
             var current = Program.Input.GetBuffer()[bufferIndex];
             int targetState;
-            
+
             if (active) {
                 targetState = current & ~(1 << bitPosition);
             } else {
                 targetState = current | 1 << bitPosition;
             }
-            
-            Program.Input.GetBuffer()[bufferIndex] = (byte)targetState;
+
+            Program.Input.GetBuffer()[bufferIndex] = (byte) targetState;
         }
     }
 }

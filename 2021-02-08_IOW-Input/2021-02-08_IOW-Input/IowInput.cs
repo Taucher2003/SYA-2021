@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Timers;
 using System.Windows.Forms;
-using _2021_02_12_IOW_Output;
 using Timer = System.Timers.Timer;
 
 namespace _2021_02_08_IOW_Input {
@@ -62,7 +61,7 @@ namespace _2021_02_08_IOW_Input {
             add => _clickHandler += value;
             remove => _clickHandler -= value;
         }
-        
+
         public delegate void ClickHandler(byte pin, bool active);
 
         private ClickHandler _clickHandler;
