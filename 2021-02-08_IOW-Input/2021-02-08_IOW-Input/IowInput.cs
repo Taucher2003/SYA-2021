@@ -8,8 +8,16 @@ using Timer = System.Timers.Timer;
 
 namespace _2021_02_08_IOW_Input {
     public partial class IowInput : Form {
-        public IowInput() {
-            InitializeComponent();
+        private readonly bool _main;
+
+        public IowInput() : this(true) { }
+
+        public IowInput(bool main) {
+            _main = main;
+            if (main) {
+                InitializeComponent();
+            }
+
             Init();
         }
 
@@ -88,6 +96,8 @@ namespace _2021_02_08_IOW_Input {
         }
 
         private void OnClick(byte pin, bool active) {
+            if (!_main) return;
+
             var panel = GetPanelByPin(pin);
             panel.BackColor = active ? Color.DarkGreen : Color.DarkRed;
             UpdateLabel();
@@ -112,7 +122,7 @@ namespace _2021_02_08_IOW_Input {
             }));
         }
 
-        private void OnClose(object sender, FormClosedEventArgs e) {
+        public void OnClose(object sender, FormClosedEventArgs e) {
             _timer.Stop();
 
             foreach (var handle in _handles) {

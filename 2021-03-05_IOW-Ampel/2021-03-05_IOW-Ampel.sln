@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30309.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2021-03-05_IOW-Ampel", "2021-03-05_IOW-Ampel\2021-03-05_IOW-Ampel.csproj", "{D7CCD055-691B-4906-9860-7FA66B03501A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7CCD055-691B-4906-9860-7FA66B03501A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7CCD055-691B-4906-9860-7FA66B03501A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7CCD055-691B-4906-9860-7FA66B03501A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7CCD055-691B-4906-9860-7FA66B03501A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09691EB0-9174-40E2-B968-732FFE69D11F}
+	EndGlobalSection
+EndGlobal
