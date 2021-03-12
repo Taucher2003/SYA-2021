@@ -132,7 +132,7 @@ namespace _2021_03_05_IOW_Ampel {
             WriteToIow(buffer);
         }
 
-        private int _state;
+        private int _state = 3;
 
         private int _patternState;
 
