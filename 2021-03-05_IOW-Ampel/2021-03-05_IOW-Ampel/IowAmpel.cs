@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Linq;
 using System.Timers;
 using System.Windows.Forms;
 using _2021_02_08_IOW_Input;
@@ -11,7 +13,6 @@ namespace _2021_03_05_IOW_Ampel {
 
         private const byte LedRed = 1 << 2;
         private const byte LedYellow = 1 << 1;
-
         private const byte LedGreen = 1 << 0;
 
         public Form1(IowInput input) {
@@ -107,9 +108,9 @@ namespace _2021_03_05_IOW_Ampel {
         private int State {
             get => _state;
             set {
-                OnStateChange(value);
                 _state = value;
                 _patternState = 0;
+                OnStateChange(value);
             }
         }
 
@@ -133,7 +134,7 @@ namespace _2021_03_05_IOW_Ampel {
 
         private int _state;
 
-        private int _patternState = 0;
+        private int _patternState;
 
         private void OnClick(byte pin, bool active) {
             switch (pin) {
@@ -158,6 +159,58 @@ namespace _2021_03_05_IOW_Ampel {
 
         private void WriteToIow(byte[] data) {
             IowInput.IowKitWrite(_input.Handle, 0, ref data[0], 5);
+            UpdateForm();
+        }
+
+        private void UpdateForm() {
+            UpdatePanel("c1");
+            UpdatePanel("c2");
+            UpdatePanel("c3");
+            UpdatePanel("f1");
+            UpdatePanel("f2");
+        }
+
+        private void UpdatePanel(string name) {
+            var control = GetControlByName(name);
+            var defaultColor = GetColorByPanel(control);
+            control.BackColor = IsPanelActive(name) ? defaultColor : Color.Black;
+        }
+
+        private bool IsPanelActive(string name) {
+            switch (name) {
+                case "c1":
+                    return (_input.GetBuffer()[2] & LedRed) == 0;
+                case "c2":
+                    return (_input.GetBuffer()[2] & LedYellow) == 0;
+                case "c3":
+                    return (_input.GetBuffer()[2] & LedGreen) == 0;
+                case "f1":
+                    return _state != 2;
+                case "f2":
+                    return _state == 2;
+            }
+
+            return false;
+        }
+
+        private Control GetControlByName(string name) {
+            return Controls.Cast<Control>().FirstOrDefault(control => control.Name.Equals(name));
+        }
+
+        // ReSharper disable once MemberCanBeMadeStatic.Local
+        private Color GetColorByPanel(Control panel) {
+            switch (panel.Name) {
+                case "c1":
+                case "f1":
+                    return Color.Firebrick;
+                case "c2":
+                    return Color.Orange;
+                case "c3":
+                case "f2":
+                    return Color.Green;
+            }
+
+            return Color.Black;
         }
     }
 }
