@@ -11,7 +11,7 @@ namespace _2021_03_05_IOW_Ampel {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1(new IowInput(false)));
+            Application.Run(new IowAmpel(new IowInput(false)));
         }
     }
 }

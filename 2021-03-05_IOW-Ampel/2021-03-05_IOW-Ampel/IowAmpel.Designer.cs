@@ -1,5 +1,5 @@
 ﻿namespace _2021_03_05_IOW_Ampel {
-    partial class Form1 {
+    partial class IowAmpel {
         /// <summary>
         /// Erforderliche Designervariable.
         /// </summary>
@@ -105,7 +105,7 @@
             this.Controls.Add(this.c2);
             this.Controls.Add(this.c1);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "IowAmpel";
             this.Text = "Form1";
             this.ResumeLayout(false);
         }

@@ -7,7 +7,7 @@ using _2021_02_08_IOW_Input;
 using Timer = System.Timers.Timer;
 
 namespace _2021_03_05_IOW_Ampel {
-    public partial class Form1 : Form {
+    public partial class IowAmpel : Form {
         private readonly IowInput _input;
         private readonly Timer _timer = new Timer();
 
@@ -15,7 +15,7 @@ namespace _2021_03_05_IOW_Ampel {
         private const byte LedYellow = 1 << 1;
         private const byte LedGreen = 1 << 0;
 
-        public Form1(IowInput input) {
+        public IowAmpel(IowInput input) {
             _input = input;
             FormClosed += _input.OnClose;
             FormClosed += (o, args) => _timer.Stop();
