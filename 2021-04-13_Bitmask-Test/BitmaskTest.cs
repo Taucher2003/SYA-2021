@@ -29,7 +29,13 @@ namespace _2021_04_13_Bitmask_Test {
             try {
                 var result = Calculate();
                 output.Text = Convert.ToString(result, 2);
-            } catch (FormatException) { } catch (ArgumentOutOfRangeException) { }
+            } catch (FormatException) {
+                // ReSharper disable once LocalizableElement
+                output.Text = "Could not parse input values";
+            } catch (ArgumentOutOfRangeException) {
+                // ReSharper disable once LocalizableElement
+                output.Text = "One input value is missing";
+            }
         }
 
         private void Trigger(object sender, EventArgs args) {
