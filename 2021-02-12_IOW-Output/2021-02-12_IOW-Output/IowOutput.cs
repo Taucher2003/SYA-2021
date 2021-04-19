@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using _2021_02_08_IOW_Input;
 
-// ReSharper disable LocalizableElement
-
 namespace _2021_02_12_IOW_Output {
     public class IowOutput {
         private const byte Pin17Shift = 0;
