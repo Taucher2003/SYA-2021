@@ -9,6 +9,9 @@ namespace _2021_04_13_Bitmask_Test {
             input2.TextChanged += Trigger;
             logicAnd.CheckedChanged += Trigger;
             logicOr.CheckedChanged += Trigger;
+
+            input1.KeyPress += KeyCheck;
+            input2.KeyPress += KeyCheck;
         }
 
         private int Calculate() {
@@ -40,6 +43,12 @@ namespace _2021_04_13_Bitmask_Test {
 
         private void Trigger(object sender, EventArgs args) {
             Update();
+        }
+
+        private void KeyCheck(object sender, KeyPressEventArgs e) {
+            if (!char.IsControl(e.KeyChar) && e.KeyChar != '1' && e.KeyChar != '0') {
+                e.Handled = true;
+            }
         }
     }
 }
